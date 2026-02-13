@@ -26,13 +26,6 @@
 		}
 	},
 
-	"sap.ui5": {
-		"rootView": {
-			"viewName": "kalendersporer.view.App",
-			"type": "XML",
-			"id": "app"
-		},
-
 		"dependencies": {
 			"minUI5Version": "1.144.0",
 			"libs": {
@@ -60,26 +53,41 @@
 			}
 		},
 
+		"sap.ui5": {
+		"rootView": {
+			"viewName": "kalendersporer.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+
 		"routing": {
 			"config": {
-				"routerClass": "sap.m.routing.Router",
-				"viewType": "XML",
-				"viewPath": "kalendersporer.view",
-				"controlId": "app",
-				"controlAggregation": "pages"
+			"routerClass": "sap.m.routing.Router",
+			"viewType": "XML",
+			"viewPath": "kalendersporer.view",
+			"controlId": "app",
+			"controlAggregation": "pages",
+			"async": true
 			},
 			"routes": [
-				{
-					"pattern": "",
-					"name": "main",
-					"target": "main"
-				}
+			{
+				"pattern": "",
+				"name": "login",
+				"target": "login"
+			},
+			{
+				"pattern": "calender",
+				"name": "calender",
+				"target": "calender"
+			}
 			],
 			"targets": {
-				"main": {
-					"viewId": "main",
-					"viewName": "Main"
-				}
+			"login": {
+				"viewName": "Login"
+			},
+			"calender": {
+				"viewName": "Calender"
+			}
 			}
 		}
 	}

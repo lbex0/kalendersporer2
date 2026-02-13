@@ -1,24 +1,29 @@
-const cds = require("@sap/cds");
+cds = require("@sap/cds");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const REFRESH_SECRET = process.env.REFRESH_SECRET;
 
+if (!JWT_SECRET || !REFRESH_SECRET) {
+  throw new Error("JWT_SECRET and REFRESH_SECRET must be set in environment variables");
+}
+
 module.exports = (srv) => {
 
-  // JWT guard (replaces server.js middleware)
-  srv.before("*", (req) => {
-    if (req.event === "validateLogin" || req.event === "refreshToken") return;
-    
+  // JWT Guard
+  srv.before(["READ", "CREATE", "UPDATE", "DELETE"], "*", (req) => {
+
     const auth = req.headers.authorization;
-    if (!auth || !auth.startsWith("Bearer ")) req.reject(401, "Authorization header missing");
+    if (!auth?.startsWith("Bearer ")) {
+      return req.reject(401, "Unauthorized");
+    }
 
     try {
       const token = auth.split(" ")[1];
       req.user = jwt.verify(token, JWT_SECRET);
     } catch {
-      req.reject(403, "Invalid token");
+      return req.reject(403, "Invalid token");
     }
   });
 
@@ -29,10 +34,14 @@ module.exports = (srv) => {
       SELECT.one.from("kalendersporer.LoginInfo").where({ username })
     );
 
-    if (!loginInfo) req.reject(401, "Invalid username or password");
+    if (!loginInfo) {
+      return req.reject(401, "Invalid username or password");
+    }
 
     const ok = await bcrypt.compare(password, loginInfo.password_hash);
-    if (!ok) req.reject(401, "Invalid username or password");
+    if (!ok) {
+      return req.reject(401, "Invalid username or password");
+    }
 
     return {
       accessToken: jwt.sign({ username }, JWT_SECRET, { expiresIn: "15m" }),
@@ -47,7 +56,7 @@ module.exports = (srv) => {
         accessToken: jwt.sign({ username: payload.username }, JWT_SECRET, { expiresIn: "15m" })
       };
     } catch {
-      req.reject(403, "Invalid or expired refresh token");
+      return req.reject(403, "Invalid or expired refresh token");
     }
   });
 };

@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="kalenderui.controller.Login"
+    controllerName="kalendersporer.controller.Login"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">

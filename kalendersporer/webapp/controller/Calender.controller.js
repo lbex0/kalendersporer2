@@ -24,7 +24,7 @@ sap.ui.define([
     // TODO: Fix the sequence of functions called as otherwise the tokens stay in the session even tho we already cleared
     // Like moving all the code from oninit into its own data functions since otherwise it gets called too early
 
-    return Controller.extend("kalenderui.controller.Calender", {
+    return Controller.extend("kalendersporer.controller.Calender", {
         onInit: async function () {
 
             // util functions

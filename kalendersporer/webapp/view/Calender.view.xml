@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="kalenderui.controller.Calender"
+    controllerName="kalendersporer.controller.Calender"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
     xmlns:unified="sap.ui.unified"
@@ -7,7 +7,7 @@
 
     <VBox class="sapUiSmallMargin" fitContainer="true">
 
-        <Toolbar>
+        <OverflowToolbar>
             <SearchField
                 id="searchField"
                 width="300px"
@@ -35,7 +35,7 @@
             <Text text="Logged in as: {user>/username}" visible="{= !!${user>/username}}" />
             <Button icon="sap-icon://log" tooltip="Logout" text="Logout" press="onLogout" />
             <Button icon="sap-icon://palette" tooltip="Toggle Theme" press="onToggleTheme" />
-        </Toolbar>
+        </OverflowToolbar>
 
             <PlanningCalendar
                 id="PC1"

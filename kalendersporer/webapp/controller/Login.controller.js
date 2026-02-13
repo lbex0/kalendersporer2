@@ -2,17 +2,23 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageBox",
     "sap/ui/model/odata/v4/ODataModel"
-], (Controller, MessageBox, ODataModel) => {
+], (Controller, MessageBox) => {
     "use strict";
 
-    return Controller.extend("kalenderui.controller.Login", {
+    return Controller.extend("kalendersporer.controller.Login", {
         
-        onInit: function () {},
+        onInit: function () {
+            const oView = this.getView();
+            oView.byId("usernameInput")?.setValue("");
+            oView.byId("passwordInput")?.setValue("");
+        },
 
         onLogin: async function () {
             const oView = this.getView();
             const sUsername = oView.byId("usernameInput").getValue();
             const sPassword = oView.byId("passwordInput").getValue();
+
+
 
             try {
                 const response = await fetch("/odata/v4/kalender/validateLogin", {
@@ -26,9 +32,13 @@ sap.ui.define([
                     })
                 });
 
-                const result = await response.json();
+                if (!response.ok) {
+                    MessageBox.error("Invalid username or password.");
+                    return;
+                }
+                    const result = await response.json();
 
-                if (!response.ok || !result.accessToken || !result.refreshToken) {
+                if (!result.accessToken || !result.refreshToken) {
                     MessageBox.error("Invalid username or password.");
                     return;
                 }
@@ -36,11 +46,10 @@ sap.ui.define([
                 localStorage.setItem("accessToken", result.accessToken);
                 localStorage.setItem("refreshToken", result.refreshToken);
 
-                // Set timeout function will be removed and fix the bug where the tokens stay in session even if cleared or try to be cleared
-                setTimeout(() => {
+                if (localStorage.getItem("accessToken") && localStorage.getItem("refreshToken")) {
                     const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                     oRouter.navTo("calender");
-                }, 1000);
+                }
 
             } catch (err) {
                 console.error("Error during login:", err);

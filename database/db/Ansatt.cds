@@ -8,3 +8,4 @@ entity Ansatt
   role: String;
   fødselsdato : Date;
 }
+

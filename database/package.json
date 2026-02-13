@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
-    "@sap/cds": "^9",
-    "express": "^4"
+    "@sap/cds": "^9.7.1",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.3",
+    "express": "^4",
+    "jsonwebtoken": "^9.0.3"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2"

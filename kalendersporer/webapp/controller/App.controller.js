@@ -2,5 +2,5 @@ sap.ui.define([
   "sap/ui/core/mvc/Controller"
 ], function (Controller) {
   "use strict";
-  return Controller.extend("kalenderui.controller.App", {});
+  return Controller.extend("kalendersporer.controller.App", {});
 });
