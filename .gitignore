@@ -9,6 +9,8 @@ yarn-error.log*
 pnpm-debug.log*
 .npm
 package-lock.json 
+database/package-lock.json
+kalendersporer/package-lock.json
 
 # Build / output
 dist/
