@@ -1,4 +1,4 @@
-# Kalendersporer – Fullstack CAP + OpenUI5 + Cypress
+# Kalendersporer - Fullstack CAP + OpenUI5 + Cypress
 
 Dette prosjektet består av tre hoveddeler:
 
@@ -10,7 +10,7 @@ Prosjektet er organisert slik at hver del har sitt eget miljø og egne `node_mod
 
 ---
 
-## 📦 Forutsetninger
+## Forutsetninger
 
 Før du begynner må du ha følgende installert:
 
@@ -22,7 +22,7 @@ Ingen pakker er installert i repoet fra før — alle må installeres manuelt et
 
 ---
 
-## 📂 Mappestruktur
+## Mappestruktur
 
 ```
 root/
@@ -40,7 +40,7 @@ root/
 
 ---
 
-# 🚀 1. Backend (CAP) – kjøre database og service
+# 1. Backend (CAP) - kjøre database og service
 
 Gå inn i `database/`‑mappen og installer pakkene:
 
@@ -59,7 +59,7 @@ Dette vil starte databasen og OData‑servicen CAP leverer.
 
 ---
 
-# 🌐 2. Frontend (OpenUI5) – kjøre UI‑applikasjonen
+# 2. Frontend (OpenUI5) - kjøre UI‑applikasjonen
 
 Gå inn i `kalendersporer/`:
 
@@ -80,7 +80,7 @@ Dette vil kjøre UI5‑appen din på lokal server (typisk `http://localhost:8080
 
 ---
 
-# 🧪 3. E2E‑testing med Cypress
+# 3. E2E‑testing med Cypress
 
 Cypress ligger i prosjektets rot og kjører tester mot UI5‑applikasjonen og CAP‑serveren.
 
