@@ -16,13 +16,10 @@ Prosjektet bruker en .env‑fil for å konfigurere CAP‑backend i lokal utvikli
 Eksempelstruktur på .env (ikke faktiske verdier):
 
 ```
-Mock secrets brukt lokalt (IKKE for produksjon)
 JWT_SECRET=your-local-dev-jwt-secret
 REFRESH_SECRET=your-local-dev-refresh-secret
 ```
 Du trenger ikke å endre noe i .env‑fila for å kjøre prosjektet. Den brukes kun av CAP‑serveren til å kjøre lokalt med mockdata.
-
-⚠️ Viktig: Denne .env-konfigurasjonen skal aldri brukes i produksjon.
 
 ## Forutsetninger
 
